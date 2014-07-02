@@ -1,3 +1,4 @@
 thinkphp/
 app/Runtime/
 *.db
+static/gen/
