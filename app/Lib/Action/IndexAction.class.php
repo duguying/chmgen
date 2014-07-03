@@ -7,7 +7,7 @@ class IndexAction extends Action {
 	}
 	
     public function index(){
-		M("File");
+		M("file");
 		$this->display();
     }
 	

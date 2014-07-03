@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>文档</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{:C("WWW")}static/css/style.css">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  </head>
+
+  <body style="overflow:hidden">
+
+    <div class="main_header"></div>
+
+    <div class="main_pannel">
+      <div class="main_left_pannel" id="left_pannel" scroll>
+        
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>{$title}</title>
+          <link href="{:C('WWW')}/static/gen/css/bootstrap.min.css" rel="stylesheet">
+          <link href="{:C('WWW')}/static/gen/css/docs.min.css" rel="stylesheet">
+          <link href="{:C('WWW')}/static/gen/css/style.css" rel="stylesheet">
+          <script src="{:C('WWW')}/static/gen/js/jquery.min.js"></script>
+          <script src="{:C('WWW')}/static/gen/js/bootstrap.min.js"></script>
+          
+          <link type="text/css" rel="stylesheet" href="{:C('WWW')}/static/gen/css/sh_rand01.min.css">
+          <script type="text/javascript" src="{:C('WWW')}/static/gen/js/sh_main.js"></script>
+          <script type="text/javascript" src="{:C('WWW')}/static/gen/js/sh_c.js"></script>
+          
+        </head>
+        <body>
+          <h1>memcmp</h1>
+          <div class="bs-callout bs-callout-info">
+            <p>
+              <h4>函数声明</h4>
+              <div id="l_1"></div>
+            </p>
+            <p>
+              <h4>头文件</h4>
+              <div id="l_2"></div>
+            </p>
+            <p>
+              <h4>函数功能</h4>
+              <div id="l_3"></div>
+            </p>
+            <p>
+              <h4>参数</h4>
+              <div id="l_4"></div>
+            </p>
+            <p>
+              <h4>返回值</h4>
+              <div id="l_5"></div>
+            </p>
+          </div>
+          
+          <div class="bs-callout bs-callout-green">
+            <p>
+              <h4>函数说明</h4>
+              <div id="l_6"></div>
+            </p>
+          </div>
+          
+          <div class="bs-callout bs-callout-warning">
+          <p>
+            <h4>注意事项</h4>
+            <div id="l_7"></div>
+          </p>
+          </div>
+          
+          <div class="panel panel-default">
+          <div class="panel-heading"><b>代码示例</b></div>
+          <pre class="sh_c" id="l_8">
+
+          </pre>
+          </div>
+        </body>
+        </html>
+
+      </div>
+      <div class="main_right_content" id="right_pannel" >
+        
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>{$title}</title>
+          <link href="{:C('WWW')}/static/gen/css/bootstrap.min.css" rel="stylesheet">
+          <link href="{:C('WWW')}/static/gen/css/docs.min.css" rel="stylesheet">
+          <link href="{:C('WWW')}/static/gen/css/style.css" rel="stylesheet">
+          <script src="{:C('WWW')}/static/gen/js/jquery.min.js"></script>
+          <script src="{:C('WWW')}/static/gen/js/bootstrap.min.js"></script>
+          
+          <link type="text/css" rel="stylesheet" href="{:C('WWW')}/static/gen/css/sh_rand01.min.css">
+          <script type="text/javascript" src="{:C('WWW')}/static/gen/js/sh_main.js"></script>
+          <script type="text/javascript" src="{:C('WWW')}/static/gen/js/sh_c.js"></script>
+          
+        </head>
+        <body onload="sh_highlightDocument();">
+          <h1>memcmp</h1>
+          <div class="bs-callout bs-callout-info">
+            <p>
+              <h4>函数声明</h4>
+              <div contenteditable="true" class="editor" id="r_1"></div>
+            </p>
+            <p>
+              <h4>头文件</h4>
+              <div contenteditable="true" class="editor" id="r_2"></div>
+            </p>
+            <p>
+              <h4>函数功能</h4>
+              <div contenteditable="true" class="editor" id="r_3"></div>
+            </p>
+            <p>
+              <h4>参数</h4>
+              <div contenteditable="true" class="editor" id="r_4"></div>
+            </p>
+            <p>
+              <h4>返回值</h4>
+              <div contenteditable="true" class="editor" id="r_5"></div>
+            </p>
+          </div>
+          
+          <div class="bs-callout bs-callout-green">
+            <p>
+              <h4>函数说明</h4>
+              <div contenteditable="true" class="editor" id="r_6"></div>
+            </p>
+          </div>
+          
+          <div class="bs-callout bs-callout-warning">
+          <p>
+            <h4>注意事项</h4>
+            <div contenteditable="true" class="editor" id="r_7"></div>
+          </p>
+          </div>
+          
+          <div class="panel panel-default">
+          <div class="panel-heading"><b>代码示例</b></div>
+          <pre class="sh_c" contenteditable="true" id="r_8">
+
+          </pre>
+          </div>
+        </body>
+        </html>
+
+      </div>
+    </div>
+    
+  </body>
+</html>
+<script>
+$(document).ready(function(e){
+
+  function resize_event() {
+    var doc_h = $(window).height() - 50;
+    $(".main_pannel").css("height",doc_h);
+  }
+  
+  function contentchange_event() {
+    $("#l_1").html($("#r_1").html());
+    $("#l_2").html($("#r_2").html());
+    $("#l_3").html($("#r_3").html());
+    $("#l_4").html($("#r_4").html());
+    $("#l_5").html($("#r_5").html());
+    $("#l_6").html($("#r_6").html());
+    $("#l_7").html($("#r_7").html());
+    sh_highlightDocument();
+  }
+
+  resize_event();
+  contentchange_event();
+
+  $(window).resize(function(){
+    resize_event();
+  });
+
+  $(".main_right_content").keyup(function(e){
+    contentchange_event();
+  });
+
+  $(".main_right_content").scroll(function(e){
+    var x = $(".main_right_content").eq(0).scrollLeft();
+    var y = $(".main_right_content").eq(0).scrollTop();
+
+    $(".main_left_pannel").eq(0).scrollLeft(x);
+    $(".main_left_pannel").eq(0).scrollTop(y);
+    
+  });
+
+});
+  
+</script>

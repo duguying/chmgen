@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>文档</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{:C("WWW")}static/css/style.css">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  </head>
+
+  <body style="overflow:hidden">
+
+    <div class="main_header"></div>
+
+    <div class="main_pannel">
+      <div class="main_left_pannel" id="left_pannel" scroll>
+        
+        <!Doctype html>
+        <html>
+          <head>
+            <title>RunJs</title>
+          </head>
+          <body>
+            
+          </body>
+        </html>
+
+      </div>
+      <div class="main_right_content" id="right_pannel" contenteditable="true">
+        
+        hello world.
+
+      </div>
+    </div>
+    
+  </body>
+</html>
+<script>
+$(document).ready(function(e){
+
+  function resize_event() {
+    var doc_h = $(window).height() - 50;
+    $(".main_pannel").css("height",doc_h);
+  }
+  
+  function contentchange_event() {
+    $(".main_left_pannel").html($(".main_right_content").html());
+  }
+
+  resize_event();
+  contentchange_event();
+
+  $(window).resize(function(){
+    resize_event();
+  });
+
+  $(".main_right_content").keyup(function(e){
+    contentchange_event();
+  });
+
+  $(".main_right_content").scroll(function(e){
+    var x = $(".main_right_content").eq(0).scrollLeft();
+    var y = $(".main_right_content").eq(0).scrollTop();
+
+    $(".main_left_pannel").eq(0).scrollLeft(x);
+    $(".main_left_pannel").eq(0).scrollTop(y);
+    
+  });
+
+});
+  
+</script>
