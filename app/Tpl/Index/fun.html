@@ -133,16 +133,16 @@
           
           <div class="bs-callout bs-callout-green">
             <p>
-              <h4>函数说明</h4>
-              <div contenteditable="true" class="editor" id="r_6"></div>
+              <h4>函数说明</h4><small>使用HTML语法, 支持Bootstrap标签和class</small>
+              <textarea contenteditable="true" class="editor" id="r_6"></textarea>
             </p>
           </div>
           
           <div class="bs-callout bs-callout-warning">
-          <p>
-            <h4>注意事项</h4>
-            <div contenteditable="true" class="editor" id="r_7"></div>
-          </p>
+            <p>
+              <h4>注意事项</h4><small>使用HTML语法, 支持Bootstrap标签和class</small>
+              <textarea contenteditable="true" class="editor" id="r_7"></textarea>
+            </p>
           </div>
           
           <div class="panel panel-default">
@@ -189,8 +189,8 @@ $(document).ready(function(e){
     $("#l_3").html($("#r_3").html());
     $("#l_4").html($("#r_4").html());
     $("#l_5").html($("#r_5").html());
-    $("#l_6").html($("#r_6").html());
-    $("#l_7").html($("#r_7").html());
+    $("#l_6").html($("#r_6").val());
+    $("#l_7").html($("#r_7").val());
     //$("#l_8").html(editor.doc.getValue());
     sh_highlightDocument();
   }
