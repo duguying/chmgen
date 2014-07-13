@@ -24,6 +24,7 @@
     <div class="container">
 
       <div class="form-signin" role="form">
+        <div class="alert " role="alert" id="message_box"></div>
         <h2 class="form-signin-heading">请登录</h2>
         <input type="username" id="username" class="form-control" placeholder="用户名" required autofocus>
         <input type="password" id="password" class="form-control" placeholder="密码" required>
@@ -48,9 +49,15 @@
           data: {'username':username,'password':password},
           success: function(msg){
             if (msg.result) {
-              alert(msg.msg);
+              $("#message_box").removeClass("alert-danger");
+              $("#message_box").addClass("alert-success");
+              $("#message_box").html(msg.msg);
+              window.location = msg.redirect_url;
             } else{
-              alert(msg.msg);
+              $("#message_box").removeClass("alert-success");
+              $("#message_box").addClass("alert-danger");
+              $("#message_box").html(msg.msg);
+              
             };
           }
         });
