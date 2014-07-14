@@ -19,12 +19,15 @@ class SearchAction extends Action{
 
 		$result = $this->file->where('name like "%'.$key.'%"')->select();
 		$finded = false;
+		$num = count($result);
 
-		for ($i = 0; $i < count($result); $i++) { 
+		for ($i = 0; $i < $num; $i++) { 
 			if ($result[$i]['name'] == $key) {
 				$finded = true;
 			}
 		}
+
+		$result['number'] = $num;
 		
 		if(!$finded){
 			$result['create'] = $key;
