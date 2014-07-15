@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{:C("WWW")}static/css/style.css">
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src=" http://libs.baidu.com/json/json2/json2.js"></script>
+    <script>
+    var data = {$data};
+    </script>
   </head>
 
   <body style="overflow:hidden">
@@ -26,7 +30,7 @@
         <html lang="en">
         <head>
           <meta charset="UTF-8">
-          <title>{$_GET['name']|default='function name'}</title>
+          <title>{$_GET['key']|default='function name'}</title>
           <link href="{:C('WWW')}/static/gen/css/bootstrap.min.css" rel="stylesheet">
           <link href="{:C('WWW')}/static/gen/css/docs.min.css" rel="stylesheet">
           <link href="{:C('WWW')}/static/gen/css/style.css" rel="stylesheet">
@@ -39,7 +43,7 @@
           
         </head>
         <body>
-          <h1>{$_GET['name']|default='function name'}</h1>
+          <h1>{$_GET['key']|default='function name'}</h1>
           <div class="bs-callout bs-callout-info">
             <p>
               <h4>函数声明</h4>
@@ -93,7 +97,7 @@
         <html lang="en">
         <head>
           <meta charset="UTF-8">
-          <title>{$_GET['name']|default='function name'}</title>
+          <title>{$_GET['key']|default='function name'}</title>
           <link href="{:C('WWW')}/static/gen/css/bootstrap.min.css" rel="stylesheet">
           <link href="{:C('WWW')}/static/gen/css/docs.min.css" rel="stylesheet">
           <link href="{:C('WWW')}/static/gen/css/style.css" rel="stylesheet">
@@ -107,7 +111,7 @@
           
         </head>
         <body onload="sh_highlightDocument();">
-          <h1>{$_GET['name']|default='function name'}</h1>
+          <h1>{$_GET['key']|default='function name'}</h1>
           <div class="bs-callout bs-callout-info">
             <p>
               <h4>函数声明</h4>
@@ -160,8 +164,16 @@
 <script>
 $(document).ready(function(e){
 
+  function save_data_local(){
+    var data_string = JSON.stringify(data);
+    localStorage[data.name] = data_string;
+  }
+
   function HtmlEncode(text){ 
-    return text.replace(/&/g, '&amp').replace(/</g, '&lt;').replace(/>/g, '&gt;'); 
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); 
+  }
+  function HtmlDecode(text){ 
+    return text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'); 
   }
 
   var editor = CodeMirror.fromTextArea(document.getElementById("r_8"), {
@@ -176,8 +188,10 @@ $(document).ready(function(e){
 
   editor.on("change", function() {
     $("#l_8").html(HtmlEncode(editor.doc.getValue()));
+    data.f_demos = HtmlEncode(editor.doc.getValue());
+    save_data_local();
   });
-
+  
   function resize_event() {
     var doc_h = $(window).height() - 50;
     $(".main_pannel").css("height",doc_h);
@@ -185,18 +199,46 @@ $(document).ready(function(e){
   
   function contentchange_event() {
     $("#l_1").html($("#r_1").html());
+    data.f_declaration = $("#r_1").html();
+
     $("#l_2").html($("#r_2").html());
+    data.f_include = $("#r_2").html();
+
     $("#l_3").html($("#r_3").html());
+    data.f_function = $("#r_3").html();
+
     $("#l_4").html($("#r_4").html());
+    data.f_parms = $("#r_4").html();
+
     $("#l_5").html($("#r_5").html());
+    data.f_returns = $("#r_5").html();
+
     $("#l_6").html($("#r_6").val());
+    data.f_description = $("#r_6").html();
+
     $("#l_7").html($("#r_7").val());
-    //$("#l_8").html(editor.doc.getValue());
+    data.f_warning = $("#r_7").html();
+
+    save_data_local();
+
     sh_highlightDocument();
   }
 
+  // override current content with last edit
+  if(localStorage[data.name]){
+    if(confirm("是否加载上次内容？")){
+      data = eval('['+localStorage[data.name]+']')[0];
+      load_data();
+      contentchange_event();
+    }else{
+      load_data();
+      contentchange_event();
+    };
+    console.log(data);
+  }
+
   resize_event();
-  contentchange_event();
+  
 
   $(window).resize(function(){
     resize_event();
@@ -214,6 +256,33 @@ $(document).ready(function(e){
     $(".main_left_pannel").eq(0).scrollTop(y);
     
   });
+
+  // load data
+  function load_data(){
+    $("#l_1").html(data.f_declaration);
+    $("#r_1").html(data.f_declaration);
+
+    $("#l_2").html(data.f_include);
+    $("#r_2").html(data.f_include);
+
+    $("#l_3").html(data.f_function);
+    $("#r_3").html(data.f_function);
+
+    $("#l_4").html(data.f_parms);
+    $("#r_4").html(data.f_parms);
+
+    $("#l_5").html(data.f_returns);
+    $("#r_5").html(data.f_returns);
+
+    $("#l_6").html(data.f_description);
+    $("#r_6").val(data.f_description);
+
+    $("#l_7").html(data.f_warning);
+    $("#r_7").val(data.f_warning);
+
+    editor.doc.setValue(HtmlDecode(data.f_demos));
+    $("#l_8").html(data.f_demos);
+  }
   
 });
   

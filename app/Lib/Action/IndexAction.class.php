@@ -2,11 +2,13 @@
 
 class IndexAction extends Action {
 	public $user_model = null;
+  public $file_model = null;
   public $user = null;
 
 	public function _initialize(){
 		init_db_file();
 		$this->user_model = M("user");
+    $this->file_model = M("file");
     $this->user = session('username');
     $this->assign('user',$this->user);
 	}
@@ -37,6 +39,10 @@ class IndexAction extends Action {
   		// redirection
   		header('location:'.C('WWW'));
   	}else{
+      $key = $_GET['key'];
+      $result = $this->file_model->where(array('name'=>$key))->find();
+      //var_dump(json_encode($result));
+      $this->assign('data',json_encode($result));
   		$this->display();
   	}
   }
@@ -49,6 +55,19 @@ class IndexAction extends Action {
     }else{
       $this->display();
     }
+  }
+
+  // 编辑
+  public function edit(){
+    $key = (string)$_GET['key'];
+    $type = (1 == (int)$_GET['type'])?1:0;
+    //var_dump(array('key'=>$key,'type'=>$type));
+    if($type == 0){
+      header('location:'.U('index/fun').'?key='.$key);
+    }else{
+      header('location:'.U('index/page').'?key='.$key);
+    }
+    
   }
 
   // 登录验证Ajax页面
